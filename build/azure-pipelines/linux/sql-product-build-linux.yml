@@ -218,6 +218,11 @@ steps:
     continueOnError: true
     condition: and(succeeded(), eq(variables['RUN_TESTS'], 'true'))
 
+  - script: |
+      set -e
+      zip -r $(Build.ArtifactStagingDirectory)/logs.zip
+    displayName: Zip logs
+
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
 
