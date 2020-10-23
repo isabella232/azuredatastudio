@@ -218,6 +218,11 @@ steps:
     continueOnError: true
     condition: and(succeeded(), eq(variables['RUN_TESTS'], 'true'))
 
+  - script: |
+      set -e
+      sudo apt install zip
+    displayName: Install zip
+
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '~/.config/azuredatastudio/logs'
