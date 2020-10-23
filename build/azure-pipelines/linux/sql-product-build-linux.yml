@@ -218,19 +218,14 @@ steps:
     continueOnError: true
     condition: and(succeeded(), eq(variables['RUN_TESTS'], 'true'))
 
-  - script: |
-      set -e
-      sudo apt install zip
-    displayName: Install zip
-
   - task: ArchiveFiles@2
     inputs:
       rootFolderOrFile: '~/.config/azuredatastudio/logs'
       includeRootFolder: true
-      archiveType: 'zip'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/logs.zip'
+      archiveType: 'tar'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/logs.tar.gz'
       replaceExistingArchive: true
-    displayName: Zip logs
+    displayName: Archive logs
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
