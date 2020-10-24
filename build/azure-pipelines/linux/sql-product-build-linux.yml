@@ -218,14 +218,20 @@ steps:
     continueOnError: true
     condition: and(succeeded(), eq(variables['RUN_TESTS'], 'true'))
 
-  - task: ArchiveFiles@2
+#  - task: ArchiveFiles@2
+#    inputs:
+#      rootFolderOrFile: '~/.config/azuredatastudio/logs'
+#      includeRootFolder: true
+#      archiveType: 'tar'
+#      archiveFile: '$(Build.ArtifactStagingDirectory)/logs.tar.gz'
+#      replaceExistingArchive: true
+#    displayName: Archive logs
+
+  - task: CopyFiles@2
+    displayName: 'Copy Logs to: $(Build.ArtifactStagingDirectory)/logs/linux'
     inputs:
-      rootFolderOrFile: '~/.config/azuredatastudio/logs'
-      includeRootFolder: true
-      archiveType: 'tar'
-      archiveFile: '$(Build.ArtifactStagingDirectory)/logs.tar.gz'
-      replaceExistingArchive: true
-    displayName: Archive logs
+      SourceFolder: '~/.config/azuredatastudio/logs'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/logs/linux'
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
