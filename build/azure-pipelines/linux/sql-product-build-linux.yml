@@ -227,11 +227,17 @@ steps:
 #      replaceExistingArchive: true
 #    displayName: Archive logs
 
-  - task: CopyFiles@2
-    displayName: 'Copy Logs to: $(Build.ArtifactStagingDirectory)/logs/linux'
-    inputs:
-      SourceFolder: '~/.config/azuredatastudio/logs'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)/logs/linux'
+#  - task: CopyFiles@2
+#    displayName: 'Copy Logs to: $(Build.ArtifactStagingDirectory)/logs/linux'
+#    inputs:
+#      SourceFolder: '~/.config/azuredatastudio/logs'
+#      TargetFolder: '$(Build.ArtifactStagingDirectory)/logs/linux'
+
+  - script: |
+      set -e
+      zip -Xry $(Build.ArtifactStagingDirectory)/logs/linux-x64/logs-linux-x64.zip ~/.config/azuredatastudio/logs
+    displayName: Copy Logs
+    condition: and(succeeded(), eq(variables['RUN_TESTS'], 'true'))
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
