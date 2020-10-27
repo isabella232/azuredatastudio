@@ -20,5 +20,5 @@ steps:
 
   - script: |
       set -e
-      gzip -Xry $(Build.ArtifactStagingDirectory)/logs/linux-x64/logs-linux-x64.zip ~/.config/azuredatastudio/logs
+      tar -czvf $(Build.ArtifactStagingDirectory)/logs/linux-x64/logs-linux-x64.tar.gz ~/.config/azuredatastudio/logs
     displayName: Copy Logs
