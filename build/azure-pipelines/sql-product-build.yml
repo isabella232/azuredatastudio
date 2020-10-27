@@ -5,7 +5,7 @@ resources:
     endpoint: ContainerRegistry
 
 jobs:
-- job: Linux Test
+- job: LinuxTest
   pool:
     vmImage: 'Ubuntu-16.04'
   container: linux-x64
