@@ -5,6 +5,14 @@ resources:
     endpoint: ContainerRegistry
 
 jobs:
+- job: Linux Test
+  pool:
+    vmImage: 'Ubuntu-16.04'
+  container: linux-x64
+  steps:
+  - template: linux/test-linux.yml
+  timeoutInMinutes: 70
+
 - job: Compile
   pool:
     vmImage: 'Ubuntu-16.04'
