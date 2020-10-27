@@ -20,8 +20,8 @@ steps:
 
   - script: |
       set -e
-      mkdir $(Build.ArtifactStagingDirectory)/logs/linux-x64
-      mkdir ~/.config/azuredatastudio/logs
+      mkdir -R $(Build.ArtifactStagingDirectory)/logs/linux-x64
+      mkdir -R ~/.config/azuredatastudio/logs
       date >> ~/.config/azuredatastudio/logs/log.txt
       tar -czvf $(Build.ArtifactStagingDirectory)/logs/linux-x64/logs-linux-x64.tar.gz ~/.config/azuredatastudio/logs
     displayName: Copy Logs
