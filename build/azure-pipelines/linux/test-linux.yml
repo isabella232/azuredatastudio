@@ -24,7 +24,7 @@ steps:
       mkdir -p ~/.config/azuredatastudio/logs
       date >> ~/.config/azuredatastudio/logs/log.txt
       cd ~/.config/azuredatastudio/logs
-      tar -czvf $(Build.ArtifactStagingDirectory)/logs/linux-x64/logs-linux-x64.tar.gz .
+      tar -czvf $(Build.ArtifactStagingDirectory)/logs/linux-x64/logs-linux-x64.tar.gz
     displayName: Copy Logs
 
   - task: PublishPipelineArtifact@0
