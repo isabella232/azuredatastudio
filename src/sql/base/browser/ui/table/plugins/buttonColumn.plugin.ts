@@ -17,7 +17,7 @@ export interface ButtonColumnOptions {
 	 */
 	iconCssClass?: string;
 	/**
-	 * The aria-label title of the button
+	 * The aria-label/title of the button
 	 */
 	title?: string;
 	/**
